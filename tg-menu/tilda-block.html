@@ -1,0 +1,161 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --night:#0b0606; --glow:#5a0a0a; --snow:#f6eeee; --snow2:rgba(246,238,238,.68);
+  --glass:rgba(255,255,255,.07); --glassline:rgba(255,255,255,.14);
+  --redDeep:#6a0505; --pill:linear-gradient(135deg,#e01414,#8a0808); --hot:#ff4a3d;
+  --f-body:Montserrat,system-ui,sans-serif; --f-site:Manrope,Montserrat,system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--night);color:var(--snow);font-family:var(--f-site)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid #fff;outline-offset:2px}
+details>summary{list-style:none;cursor:pointer}
+details>summary::-webkit-details-marker{display:none}
+.app{max-width:440px;margin:0 auto;min-height:100vh;background:radial-gradient(120% 55% at 50% 0%,var(--glow) 0%,var(--night) 62%) var(--night);
+  padding:20px max(16px,env(safe-area-inset-right,0px)) 28px max(16px,env(safe-area-inset-left,0px))}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 128px;gap:6px;align-items:end}
+.hero .ph{width:128px;display:block;filter:drop-shadow(0 0 28px rgba(224,20,20,.45))}
+.hero .tx{padding-bottom:14px}
+.hd{font:700 11px var(--f-site);letter-spacing:.14em;color:var(--hot)}
+h1{margin-top:6px;font:800 27px/1.05 var(--f-body);text-transform:uppercase;letter-spacing:-.4px}
+.sub{margin-top:9px;font:600 12px/1.4 var(--f-site);color:var(--snow2)}
+.intro{margin-top:8px;font:500 12.5px/1.5 var(--f-site)}
+.svc{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.row{display:flex;align-items:center;gap:10px;background:var(--pill);border-radius:14px;padding:8px 9px 8px 13px;box-shadow:0 6px 16px rgba(224,20,20,.22)}
+.row .t{flex:1;min-width:0}
+.row b{display:block;font:700 13.5px/1.15 var(--f-site);color:#fff}
+.row small{display:block;margin-top:2px;font:500 11px/1.3 var(--f-site);color:rgba(255,255,255,.82)}
+.go{flex:none;background:var(--redDeep);color:#fff;font:800 11px var(--f-site);padding:8px 12px;border-radius:99px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.use{margin-top:26px}
+h2{font:800 12px var(--f-site);letter-spacing:.16em;text-transform:uppercase;color:var(--hot)}
+.hint{margin:6px 0 12px;font:500 13px/1.4 var(--f-site);color:var(--snow2)}
+.acc{display:flex;flex-direction:column;gap:8px}
+details{background:var(--glass);border:1px solid var(--glassline);border-radius:16px}
+summary{display:flex;align-items:center;gap:10px;padding:13px 14px}
+summary b{flex:1;min-width:0;font:700 15px/1.2 var(--f-site)}
+summary .cnt{font:600 12px var(--f-site);color:var(--snow2)}
+.chev{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--pill);transition:transform .2s}
+.chev svg{width:11px;height:11px}
+details[open] .chev{transform:rotate(180deg)}
+.lst{border-top:1px solid var(--glassline);padding:2px 14px 6px}
+.lst a{display:flex;align-items:flex-start;gap:10px;padding:11px 0;border-bottom:1px solid var(--glassline);font:600 13.5px/1.4 var(--f-site)}
+.lst a:last-child{border-bottom:0}
+.lst .n{flex:1;min-width:0}
+.tag{flex:none;font:700 10px var(--f-site);letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:99px}
+.tag.post{background:rgba(224,20,20,.22);color:#ff8a80}
+.tag.pod{background:var(--snow);color:var(--night)}
+.tag.yt{background:#fff;color:#c4302b}
+.tag.amz{background:#f3a93c;color:var(--night)}
+.soc{margin-top:24px;display:flex;gap:8px}
+.soc a{flex:1;text-align:center;padding:11px 6px;border-radius:99px;background:var(--pill);color:#fff;font:800 12.5px var(--f-site)}
+@media (max-width:380px){.hero{grid-template-columns:minmax(0,1fr) 104px}.hero .ph{width:104px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.amz h3{margin:18px 0 8px;font:800 12px var(--f-site);letter-spacing:.14em;text-transform:uppercase;color:var(--hot)}
+.amz .grid{list-style:none;display:grid;gap:8px}
+.amz .card{display:grid;grid-template-columns:84px 1fr;gap:12px;align-items:center;background:var(--glass);border:1px solid var(--glassline);border-radius:14px;padding:9px}
+.amz .card img{width:84px;height:84px;object-fit:contain;background:#fff;border-radius:10px}
+.amz .info{display:grid;gap:6px;justify-items:start;min-width:0}
+.amz .nm{font:700 13.5px/1.3 var(--f-site)}
+.amz .sim{font:500 10.5px var(--f-site);color:var(--snow2);border:1px dashed var(--snow2);border-radius:99px;padding:2px 8px}
+.amz .buy{background:var(--pill);color:#fff;font:800 11.5px var(--f-site);border-radius:99px;padding:8px 14px}
+.vh{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.back{background:var(--glass);border:1px solid var(--glassline);color:var(--snow);font:700 12px var(--f-site);border-radius:99px;padding:8px 14px}
+.vh h2{font-size:13px}
+.note{margin-top:20px;font:500 11px/1.5 var(--f-site);color:var(--snow2)}
+</style>
+<div class="tgapp">
+<main class="app" id="app"></main>
+<section id="v-gadget" class="amz view app" hidden><div class="vh"><a class="back" href="#">← Меню</a><h2>Мои гаджеты</h2></div><h3>Свет и съёмка</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a43.jpg" alt="ULANZI UA20, LED-трубка 20 Вт" loading="lazy"><div class="info"><div class="nm">ULANZI UA20, LED-трубка 20 Вт</div><a class="buy" href="https://www.amazon.de/dp/B0DCJPT6WG?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a44.jpg" alt="Newmowa, магнитный монитор для селфи" loading="lazy"><div class="info"><div class="nm">Newmowa, магнитный монитор для селфи</div><a class="buy" href="https://www.amazon.de/dp/B0CGLX4M61?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><p class="note">Werbung. Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</p></section><section id="v-baby" class="amz view app" hidden><div class="vh"><a class="back" href="#">← Меню</a><h2>Что я беру для сына</h2></div><h3>Пеленальный столик</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a01.jpg" alt="Подогреваемый матрас для пеленания" loading="lazy"><div class="info"><div class="nm">Подогреваемый матрас для пеленания</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0F4RQ9J9G?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a02.jpg" alt="PUTSKA, органайзер для пеленального столика" loading="lazy"><div class="info"><div class="nm">PUTSKA, органайзер для пеленального столика</div><a class="buy" href="https://www.amazon.de/dp/B0DHSM6TPC?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a03.jpg" alt="Sudocrem, крем под подгузник" loading="lazy"><div class="info"><div class="nm">Sudocrem, крем под подгузник</div><a class="buy" href="https://www.amazon.de/dp/B0D6BP7BP7?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a04.jpg" alt="Weleda Baby Calendula, защитный крем" loading="lazy"><div class="info"><div class="nm">Weleda Baby Calendula, защитный крем</div><a class="buy" href="https://www.amazon.de/dp/B0DJTBNPWG?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a05.jpg" alt="Braun BNT400, бесконтактный термометр" loading="lazy"><div class="info"><div class="nm">Braun BNT400, бесконтактный термометр</div><a class="buy" href="https://www.amazon.de/dp/B07KXXCGQ7?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a06.jpg" alt="NoseFrida, аспиратор для носа" loading="lazy"><div class="info"><div class="nm">NoseFrida, аспиратор для носа</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B00171WXII?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a07.jpg" alt="Stérimar Baby, спрей для носа" loading="lazy"><div class="info"><div class="nm">Stérimar Baby, спрей для носа</div><a class="buy" href="https://www.amazon.de/dp/B0B8TSL731?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a08.jpg" alt="Ватные палочки с ограничителем" loading="lazy"><div class="info"><div class="nm">Ватные палочки с ограничителем</div><a class="buy" href="https://www.amazon.de/dp/B0GJK25CV8?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a09.jpg" alt="Пеленальные подкладки, стираемые, 2 шт." loading="lazy"><div class="info"><div class="nm">Пеленальные подкладки, стираемые, 2 шт.</div><a class="buy" href="https://www.amazon.de/dp/B091797LWV?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a10.jpg" alt="ALL KIDS UNITED, пеленальная подкладка 50x70" loading="lazy"><div class="info"><div class="nm">ALL KIDS UNITED, пеленальная подкладка 50x70</div><a class="buy" href="https://www.amazon.de/dp/B08TC1W5QW?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a11.jpg" alt="Tommee Tippee Twist &amp; Click, ведро для подгузников" loading="lazy"><div class="info"><div class="nm">Tommee Tippee Twist &amp; Click, ведро для подгузников</div><a class="buy" href="https://www.amazon.de/dp/B0HGRK52BR?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><h3>Сон и спокойствие</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a12.jpg" alt="babybay Maxi, приставная кроватка" loading="lazy"><div class="info"><div class="nm">babybay Maxi, приставная кроватка</div><a class="buy" href="https://www.amazon.de/dp/B07RRYDPF5?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a13.jpg" alt="Кокон-гнёздышко для новорождённого" loading="lazy"><div class="info"><div class="nm">Кокон-гнёздышко для новорождённого</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0F2HT9D87?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a14.jpg" alt="Конверт-одеяло Minky" loading="lazy"><div class="info"><div class="nm">Конверт-одеяло Minky</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0HFZP18TK?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a15.jpg" alt="Philips Avent, видеоняня" loading="lazy"><div class="info"><div class="nm">Philips Avent, видеоняня</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0HBRLCWQ6?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a16.jpg" alt="Dreamegg D1, генератор белого шума" loading="lazy"><div class="info"><div class="nm">Dreamegg D1, генератор белого шума</div><a class="buy" href="https://www.amazon.de/dp/B0GTZBY38R?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a17.jpg" alt="Ночник с красным светом" loading="lazy"><div class="info"><div class="nm">Ночник с красным светом</div><a class="buy" href="https://www.amazon.de/dp/B0GLHPSS4M?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a18.jpg" alt="Fehn, мягкий мишка-комфортер" loading="lazy"><div class="info"><div class="nm">Fehn, мягкий мишка-комфортер</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0C5XSSHZR?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a19.jpg" alt="Ruvan, тёплый пояс от колик" loading="lazy"><div class="info"><div class="nm">Ruvan, тёплый пояс от колик</div><a class="buy" href="https://www.amazon.de/dp/B0FY6J5N9G?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a20.jpg" alt="Frida Baby Windi, от газиков" loading="lazy"><div class="info"><div class="nm">Frida Baby Windi, от газиков</div><a class="buy" href="https://www.amazon.de/dp/B0CR6JMMGT?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><h3>Кормление и восстановление</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a21.jpg" alt="Lansinoh Organic, мазь для сосков" loading="lazy"><div class="info"><div class="nm">Lansinoh Organic, мазь для сосков</div><a class="buy" href="https://www.amazon.de/dp/B08CRSYCN7?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a22.jpg" alt="Medela Purelan, ланолиновая мазь" loading="lazy"><div class="info"><div class="nm">Medela Purelan, ланолиновая мазь</div><a class="buy" href="https://www.amazon.de/dp/B08FS921H3?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a23.jpg" alt="haakaa, формы для заморозки молока" loading="lazy"><div class="info"><div class="nm">haakaa, формы для заморозки молока</div><a class="buy" href="https://www.amazon.de/dp/B09NBM52KQ?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a24.jpg" alt="Пакеты для грудного молока, 100 шт." loading="lazy"><div class="info"><div class="nm">Пакеты для грудного молока, 100 шт.</div><a class="buy" href="https://www.amazon.de/dp/B0GXF5Y3WS?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a25.jpg" alt="Накидка для кормления, муслин" loading="lazy"><div class="info"><div class="nm">Накидка для кормления, муслин</div><a class="buy" href="https://www.amazon.de/dp/B0FVMB7LBY?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a26.jpg" alt="Simple Joys by Carter&#x27;s, муслиновые салфетки" loading="lazy"><div class="info"><div class="nm">Simple Joys by Carter&#x27;s, муслиновые салфетки</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B076QHBYCY?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a27.jpg" alt="Lansinoh, компресс для Wochenbett" loading="lazy"><div class="info"><div class="nm">Lansinoh, компресс для Wochenbett</div><a class="buy" href="https://www.amazon.de/dp/B092JGQG2Z?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a28.jpg" alt="Спрей для восстановления после родов" loading="lazy"><div class="info"><div class="nm">Спрей для восстановления после родов</div><a class="buy" href="https://www.amazon.de/dp/B0FNDM39KZ?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a29.jpg" alt="Ehrenkind, обложка для Mutterpass" loading="lazy"><div class="info"><div class="nm">Ehrenkind, обложка для Mutterpass</div><a class="buy" href="https://www.amazon.de/dp/B098XKNXNH?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><h3>Прогулка</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a30.jpg" alt="Fillikid Eco Big, зимний конверт в коляску" loading="lazy"><div class="info"><div class="nm">Fillikid Eco Big, зимний конверт в коляску</div><a class="buy" href="https://www.amazon.de/dp/B07HM26RHD?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a31.jpg" alt="Муфта для рук на коляску" loading="lazy"><div class="info"><div class="nm">Муфта для рук на коляску</div><a class="buy" href="https://www.amazon.de/dp/B0BDV45MZW?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a32.jpg" alt="Козырёк от солнца на коляску" loading="lazy"><div class="info"><div class="nm">Козырёк от солнца на коляску</div><a class="buy" href="https://www.amazon.de/dp/B0CD1D4SJZ?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a33.jpg" alt="Зимний комбинезон с капюшоном" loading="lazy"><div class="info"><div class="nm">Зимний комбинезон с капюшоном</div><a class="buy" href="https://www.amazon.de/dp/B0FDWBPL7C?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a34.jpg" alt="Игрушка на коляску 0-6 мес." loading="lazy"><div class="info"><div class="nm">Игрушка на коляску 0-6 мес.</div><a class="buy" href="https://www.amazon.de/dp/B0F1T63THF?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a35.jpg" alt="Wetbag, мешок для мокрых вещей" loading="lazy"><div class="info"><div class="nm">Wetbag, мешок для мокрых вещей</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0BQP28D9L?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a36.jpg" alt="Держатели для соски, 5 шт." loading="lazy"><div class="info"><div class="nm">Держатели для соски, 5 шт.</div><a class="buy" href="https://www.amazon.de/dp/B0F8MSB1MC?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><h3>Купание</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a37.jpg" alt="Складная ванночка на подставке" loading="lazy"><div class="info"><div class="nm">Складная ванночка на подставке</div><span class="sim">похожая модель</span><a class="buy" href="https://www.amazon.de/dp/B0HF494FY1?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><h3>Игрушки и развитие</h3><ul class="grid"><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a38.jpg" alt="Fisher-Price, погремушки, 2 шт." loading="lazy"><div class="info"><div class="nm">Fisher-Price, погремушки, 2 шт.</div><a class="buy" href="https://www.amazon.de/dp/B0B7XQL6V8?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a39.jpg" alt="Музыкальная рыбка и контрастная игрушка" loading="lazy"><div class="info"><div class="nm">Музыкальная рыбка и контрастная игрушка</div><a class="buy" href="https://www.amazon.de/dp/B0F8VGMJL1?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a40.jpg" alt="Деревянная развивающая стойка" loading="lazy"><div class="info"><div class="nm">Деревянная развивающая стойка</div><a class="buy" href="https://www.amazon.de/dp/B0CRYMGXNG?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a41.jpg" alt="Baby Vision, чёрно-белые карточки" loading="lazy"><div class="info"><div class="nm">Baby Vision, чёрно-белые карточки</div><a class="buy" href="https://www.amazon.de/dp/B0C6236PZN?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li><li class="card"><img src="https://raw.githubusercontent.com/yuliiabezuhla/pinterest-pins/claude/project-thread-bfbjrl/tg-menu/img/a42.jpg" alt="Контрастная книжка для малыша" loading="lazy"><div class="info"><div class="nm">Контрастная книжка для малыша</div><a class="buy" href="https://www.amazon.de/dp/B0CFZX62BY?tag=rosinkafm-21" target="_blank" rel="noopener sponsored">Заказать на Amazon</a></div></li></ul><p class="note">Werbung. Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</p></section>
+</div>
+<script>
+const S="https://rosinkafm.com", C="https://t.me/rosinkafm_official/";
+const D={
+  handle:"ROSINKA.FM",
+  sub:"маркетолог | предприниматель | 🇩🇪",
+  intro1:"Помогаю экспертам знать все о продвижении и продажах с помощью контента в любой нише, простыми словами.",
+  intro2:"Здесь собраны: мои услуги и полезные материалы.",
+  services:[
+    {t:"Чит-Код 4.0",d:"Продвижение и продажи в вашей нише, предзапись",u:S+"/kurs_smm_cheat_code"},
+    {t:"Гайд по Threads",d:"Как оформить профиль и находить клиентов",u:S+"/threads"},
+    {t:"Автоворонки",d:"Автоматизация продаж",u:S+"/avtomatizaciya"},
+    {t:"Цифровой аватар",d:"Видео-двойник, который говорит на любом языке",u:S+"/avatar"},
+    {t:"Экспресс-созвон",d:"Разбор профиля и что исправить первым",u:S+"/express"},
+    {t:"Карусели и монтаж «как у меня»",d:"Брендбук, шаблоны каруселей и монтаж рилс как в моих роликах",u:S+"/#withme"}
+  ],
+  cats:[
+    {n:"Продажи и переписка",i:[
+      ["«Спасибо, подумаю» - почему клиент уходит",1970],
+      ["7 фраз, после которых клиент пропадает",1947],
+      ["Эксперты теряют клиентов на первом предложении о себе",1951],
+      ["Почему у других покупают, а у вас - нет",1945],
+      ["Реальны ли продажи без бюджета на рекламу",1952],
+      ["Почему у вас нет денег в онлайне",1966]]},
+    {n:"Профиль, Reels и аудитория",i:[
+      ["Ваш профиль сливает людей, которые уже пришли",1949],
+      ["Что я вижу ДО того, как открою рилс",1954],
+      ["Снимаете рилсы, а заявок нет",1948],
+      ["Ваша ЦА - «женщины 25-45»?",1992],
+      ["Лестница Ханта на примере косметолога",1993],
+      ["Самые большие ошибки при продвижении",1888]]},
+    {n:"Нейросети и обновления Instagram",i:[
+      ["Обновления Instagram 2026: выпуск ч.1","https://youtu.be/LRfuIKv6Gf4",3],
+      ["Обновления Instagram: октябрь 2026",1985],
+      ["ИИ советует вам всё дороже",1990],
+      ["Контент-план на месяц за 1 час",1969],
+      ["Ваш год на карте: инструкция к видео",1995]]},
+    {n:"Гаджеты для работы",i:[
+      ["Все мои гаджеты для съёмки и работы","#gadget",2],
+      ["Свет для съёмки: надувной Ulanzi",1994]]},
+    {n:"Безопасность аккаунта",i:[
+      ["Кто и зачем подписывает ботов на ваш блог","https://youtu.be/fNHYjSwtF2E",3],
+      ["Стоп-слова для блога и рекламы",1978],
+      ["Блокирует ли Instagram за кодовые слова",1974]]},
+    {n:"YouTube-выпуски",i:[
+      ["Обновления Instagram 2026, которые вы могли пропустить","https://youtu.be/LRfuIKv6Gf4",3],
+      ["Как настроить бота в Instagram через ManyChat","https://youtu.be/8SSwC7kOBwU",3],
+      ["Threads: платформа для быстрого продвижения","https://youtu.be/TVViKLW-uz4",3],
+      ["Кто и зачем подписывает ботов на ваш блог","https://youtu.be/fNHYjSwtF2E",3],
+      ["Как эксперту зарабатывать через Instagram","https://youtu.be/lZ1iude7Du8",3],
+      ["Как набрать аудиторию в вашей нише","https://youtu.be/GCUmfyYR8G8",3],
+      ["SEO-оптимизация вашего контента","https://youtu.be/uoKnglPx47o",3],
+      ["Охваты в Instagram","https://youtu.be/P1AHUayKlMk",3],
+      ["Что действительно влияет на продуктивность","https://youtu.be/FdcanpKFuJ0",3],
+      ["Как преодолеть страх ведения соцсетей","https://youtu.be/SujzSebe998",3],
+      ["Кого заблокируют в Instagram с 1 января 2025","https://youtu.be/KEWdzY5MKng",3]]},
+    {n:"Аудиоподкасты",i:[
+      ["За что можно получить бан в Instagram",1977,1],
+      ["Почему падают охваты и где смотреть фейковые подписки",1964,1],
+      ["Фейковые странички: что это и что делать",1963,1],
+      ["Когда нельзя достичь высоких охватов",1748,1],
+      ["Для тех, кто боится говорить",1616,1],
+      ["Рецепт от выгорания и запредельные цели",1584,1],
+      ["Отдых, продуктивность, перфекционизм",1583,1],
+      ["Рассылки: как работать",1581,1],
+      ["Про Threads",1550,1],
+      ["На каком этапе ведения блога вы сейчас",1535,1]]},
+    {n:"Семейное и личное",i:[
+      ["Что я беру для сына: детские товары","#baby",2]]}
+  ]
+};
+const chev='<span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4.5l4 4 4-4"/></svg></span>';
+document.getElementById("app").innerHTML=
+ '<div class="hero"><div class="tx"><p class="hd">'+D.handle+'</p><h1>Юлия<br>Безуглая</h1><p class="sub">'+D.sub+'</p><p class="intro">'+D.intro1+'</p><p class="intro">'+D.intro2+'</p></div><img class="ph" src="https://static.tildacdn.net/tild6365-3361-4565-a637-636161396163/yulia-avatar.png" alt="Юлия Безуглая"></div>'+
+ '<div class="svc">'+D.services.map(s=>'<div class="row"><span class="t"><b>'+s.t+'</b><small>'+s.d+'</small></span><a class="go" href="'+s.u+'" target="_blank" rel="noopener">Подробнее</a></div>').join('')+'</div>'+
+ '<section class="use"><h2>Полезное</h2><p class="hint">Нажмите на интересующую вас тему</p><div class="acc">'+
+ D.cats.map(c=>'<details><summary><b>'+c.n+'</b><span class="cnt">'+c.i.length+'</span>'+chev+'</summary><div class="lst">'+c.i.map(i=>{const k=i[2]===3?'yt':i[2]===2?'amz':i[2]?'pod':'post',lb={yt:'youtube',amz:'amazon',pod:'аудио',post:'пост'}[k];return '<a href="'+(typeof i[1]==='number'?C+i[1]:i[1])+'"'+(String(i[1]).charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'><span class="n">'+i[0]+'</span><span class="tag '+k+'">'+lb+'</span></a>'}).join('')+'</div></details>').join('')+
+ '</div></section><nav class="soc"><a href="https://rosinkafm.com" target="_blank" rel="noopener">Сайт</a><a href="https://instagram.com/rosinka.fm" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@rosinkafm" target="_blank" rel="noopener">YouTube</a></nav>';
+
+(function(){var tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();}
+var app=document.getElementById("app");
+function route(){var h=location.hash.slice(1);var v=document.getElementById("v-"+h);
+document.querySelectorAll(".view").forEach(function(x){x.hidden=true});
+app.hidden=!!v;if(v)v.hidden=false;window.scrollTo(0,0);}
+window.addEventListener("hashchange",route);route();
+document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a)return;var u=a.getAttribute("href");
+if(u.charAt(0)==="#")return;if(!tg)return;e.preventDefault();
+if(/^https:\/\/t\.me\//.test(u))tg.openTelegramLink(u);else tg.openLink(u);});})();
+</script>
