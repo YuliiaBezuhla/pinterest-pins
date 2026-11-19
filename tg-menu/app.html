@@ -150,7 +150,7 @@ document.getElementById("app").innerHTML=
  D.cats.map(c=>'<details><summary><b>'+c.n+'</b><span class="cnt">'+c.i.length+'</span>'+chev+'</summary><div class="lst">'+c.i.map(i=>{const k=i[2]===3?'yt':i[2]===2?'amz':i[2]?'pod':'post',lb={yt:'youtube',amz:'amazon',pod:'аудио',post:'пост'}[k];return '<a href="'+(typeof i[1]==='number'?C+i[1]:i[1])+'"'+(String(i[1]).charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'><span class="n">'+i[0]+'</span><span class="tag '+k+'">'+lb+'</span></a>'}).join('')+'</div></details>').join('')+
  '</div></section><nav class="soc"><a href="https://rosinkafm.com" target="_blank" rel="noopener">Сайт</a><a href="https://instagram.com/rosinka.fm" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@rosinkafm" target="_blank" rel="noopener">YouTube</a></nav>';
 
-(function(){var tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();}
+(function(){var tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();var sp=tg.initDataUnsafe&&tg.initDataUnsafe.start_param;if(sp&&!location.hash&&document.getElementById("v-"+sp))history.replaceState(null,"","#"+sp);}
 var app=document.getElementById("app");
 function route(){var h=location.hash.slice(1);var v=document.getElementById("v-"+h);
 document.querySelectorAll(".view").forEach(function(x){x.hidden=true});
