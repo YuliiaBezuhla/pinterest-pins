@@ -67,6 +67,7 @@ details[open] .chev{transform:rotate(180deg)}
 .back{background:var(--glass);border:1px solid var(--glassline);color:var(--snow);font:700 12px var(--f-site);border-radius:99px;padding:8px 14px}
 .vh h2{font-size:13px}
 .amz .cm{font:500 12px/1.45 var(--f-site);color:var(--snow2)}.amz .tp{background:#fff;color:#c01010;font:800 10px var(--f-site);letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:3px 9px}.amz .topc{border-color:var(--hot);box-shadow:0 0 0 1px var(--hot) inset}.amz .rv{display:block;margin:12px 0 4px;padding:12px 14px;border-radius:14px;background:var(--glass);border:1px solid var(--glassline);font:700 13px var(--f-site);color:var(--snow)}.amz .tip{margin-top:8px;font:500 12px/1.45 var(--f-site);color:var(--snow2)}
+.legal{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;max-width:440px;margin:0 auto;background:var(--night);padding:18px 16px calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--glassline)}.legal a{font:500 11px var(--f-site);color:var(--snow2);text-decoration:underline}
 .note{margin-top:20px;font:500 11px/1.5 var(--f-site);color:var(--snow2)}
 </style>
 <div class="tgapp">
@@ -146,7 +147,7 @@ document.getElementById("app").innerHTML=
  '<div class="svc">'+D.services.map(s=>'<div class="row"><span class="t"><b>'+s.t+'</b><small>'+s.d+'</small></span><a class="go" href="'+s.u+'" target="_blank" rel="noopener">Подробнее</a></div>').join('')+'</div>'+
  '<section class="use"><h2>Полезное</h2><p class="hint">Нажмите на интересующую вас тему</p><div class="acc">'+
  D.cats.map(c=>'<details><summary><b>'+c.n+'</b><span class="cnt">'+c.i.length+'</span>'+chev+'</summary><div class="lst">'+c.i.map(i=>{const k=i[2]===3?'yt':i[2]===2?'amz':i[2]?'pod':'post',lb={yt:'youtube',amz:'amazon',pod:'аудио',post:'пост'}[k];return '<a href="'+(typeof i[1]==='number'?C+i[1]:i[1])+'"'+(String(i[1]).charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'><span class="n">'+i[0]+'</span><span class="tag '+k+'">'+lb+'</span></a>'}).join('')+'</div></details>').join('')+
- '</div></section><nav class="soc"><a href="https://rosinkafm.com" target="_blank" rel="noopener">Сайт</a><a href="https://instagram.com/rosinka.fm" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@rosinkafm" target="_blank" rel="noopener">YouTube</a></nav>';
+ '</div></section><footer class="legal"><a href="https://rosinkafm.com/impressum">Impressum</a><a href="https://rosinkafm.com/datenschutz">Datenschutz</a><a href="https://rosinkafm.com/agb">AGB</a><a href="https://rosinkafm.com/widerruf">Widerruf</a></footer><nav class="soc"><a href="https://rosinkafm.com" target="_blank" rel="noopener">Сайт</a><a href="https://instagram.com/rosinka.fm" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@rosinkafm" target="_blank" rel="noopener">YouTube</a></nav>';
 
 (function(){var tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();var sp=tg.initDataUnsafe&&tg.initDataUnsafe.start_param;if(sp&&!location.hash&&document.getElementById("v-"+sp))history.replaceState(null,"","#"+sp);}
 var app=document.getElementById("app");
