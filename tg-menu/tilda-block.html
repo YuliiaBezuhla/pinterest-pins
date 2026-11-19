@@ -157,5 +157,5 @@ app.hidden=!!v;if(v)v.hidden=false;window.scrollTo(0,0);}
 window.addEventListener("hashchange",route);route();
 document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a)return;var u=a.getAttribute("href");
 if(u.charAt(0)==="#")return;if(!tg)return;e.preventDefault();
-if(/^https:\/\/t\.me\//.test(u))tg.openTelegramLink(u);setTimeout(function(){tg.close()},150);else tg.openLink(u);});})();
+if(/^https:\/\/t\.me\//.test(u)){tg.openTelegramLink(u);setTimeout(function(){tg.close()},150);}else tg.openLink(u);});})();
 </script>
