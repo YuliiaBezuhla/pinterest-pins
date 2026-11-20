@@ -50,6 +50,7 @@ details[open] .chev{transform:rotate(180deg)}
 .tag.pod{background:var(--snow);color:var(--night)}
 .tag.yt{background:#fff;color:#c4302b}
 .tag.amz{background:#f3a93c;color:var(--night)}
+.tag.gd{background:#ff9ec4;color:var(--night)}
 .soc{margin-top:24px;display:flex;gap:8px}
 .soc a{flex:1;text-align:center;padding:11px 6px;border-radius:99px;background:var(--pill);color:#fff;font:800 12.5px var(--f-site)}
 @media (max-width:380px){.hero{grid-template-columns:minmax(0,1fr) 104px}.hero .ph{width:104px}}
@@ -138,7 +139,8 @@ const D={
       ["Про Threads",1550,1],
       ["На каком этапе ведения блога вы сейчас",1535,1]]},
     {n:"Семейное и личное",i:[
-      ["Что я беру для сына: детские товары","#baby",2]]}
+      ["Что я беру для сына: детские товары","#baby",2],
+      ["Моя корейская косметика","#beauty",4]]}
   ]
 };
 const chev='<span class="chev"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4.5l4 4 4-4"/></svg></span>';
@@ -146,7 +148,7 @@ document.getElementById("app").innerHTML=
  '<div class="hero"><div class="tx"><p class="hd">'+D.handle+'</p><h1>Юлия<br>Безуглая</h1><p class="sub">'+D.sub+'</p><p class="intro">'+D.intro1+'</p><p class="intro">'+D.intro2+'</p></div><img class="ph" src="https://static.tildacdn.net/tild6365-3361-4565-a637-636161396163/yulia-avatar.png" alt="Юлия Безуглая"></div>'+
  '<div class="svc">'+D.services.map(s=>'<div class="row"><span class="t"><b>'+s.t+'</b><small>'+s.d+'</small></span><a class="go" href="'+s.u+'" target="_blank" rel="noopener">Подробнее</a></div>').join('')+'</div>'+
  '<section class="use"><h2>Полезное</h2><p class="hint">Нажмите на интересующую вас тему</p><div class="acc">'+
- D.cats.map(c=>'<details><summary><b>'+c.n+'</b><span class="cnt">'+c.i.length+'</span>'+chev+'</summary><div class="lst">'+c.i.map(i=>{const k=i[2]===3?'yt':i[2]===2?'amz':i[2]?'pod':'post',lb={yt:'youtube',amz:'amazon',pod:'аудио',post:'пост'}[k];return '<a href="'+(typeof i[1]==='number'?C+i[1]:i[1])+'"'+(String(i[1]).charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'><span class="n">'+i[0]+'</span><span class="tag '+k+'">'+lb+'</span></a>'}).join('')+'</div></details>').join('')+
+ D.cats.map(c=>'<details><summary><b>'+c.n+'</b><span class="cnt">'+c.i.length+'</span>'+chev+'</summary><div class="lst">'+c.i.map(i=>{const k=i[2]===3?'yt':i[2]===2?'amz':i[2]===4?'gd':i[2]?'pod':'post',lb={yt:'youtube',amz:'amazon',gd:'гайд',pod:'аудио',post:'пост'}[k];return '<a href="'+(typeof i[1]==='number'?C+i[1]:i[1])+'"'+(String(i[1]).charAt(0)==='#'?'':' target="_blank" rel="noopener"')+'><span class="n">'+i[0]+'</span><span class="tag '+k+'">'+lb+'</span></a>'}).join('')+'</div></details>').join('')+
  '</div></section><footer class="legal"><a href="https://rosinkafm.com/impressum">Impressum</a><a href="https://rosinkafm.com/datenschutz">Datenschutz</a><a href="https://rosinkafm.com/agb">AGB</a><a href="https://rosinkafm.com/widerruf">Widerruf</a></footer><nav class="soc"><a href="https://rosinkafm.com" target="_blank" rel="noopener">Сайт</a><a href="https://instagram.com/rosinka.fm" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@rosinkafm" target="_blank" rel="noopener">YouTube</a></nav>';
 
 (function(){var tg=window.Telegram&&Telegram.WebApp;if(tg){tg.ready();tg.expand();var sp=tg.initDataUnsafe&&tg.initDataUnsafe.start_param;if(sp&&!location.hash&&document.getElementById("v-"+sp))history.replaceState(null,"","#"+sp);}
